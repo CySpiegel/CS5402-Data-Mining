@@ -1,6 +1,6 @@
 
 # Replace the value with the one above it
-replaceWithprecedingValue <- function(x)
+replaceWithPrecedingValue <- function(x)
 {
   for (i in 1:length(x))
   {
@@ -19,6 +19,7 @@ medianReplaceNA <- function(x)
   x[is.na(x)] <- v
   x
 }
+
 #When SD is high replace with median
 #when SD is low replace with mean
 
@@ -94,6 +95,7 @@ YNReplace <- function(x)
   x
 }
 
+
 # Numarical Data to Nominal data, only use for pumps 
 NumaricToNominal12 <- function(x)
 {
@@ -109,6 +111,15 @@ NumaricToNominal12 <- function(x)
   }
   x
 }
+
+
+# Leos decimal replacwer
+decimalReplacer2 <- function(x) {
+  for( i in 1:length(x)){
+    ifelse(is.na(x[i]),x[i]<-(x[i-1]+x[i-1])/2,x[i])
+  }
+}
+
 
 
 
