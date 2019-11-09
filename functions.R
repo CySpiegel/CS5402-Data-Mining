@@ -13,7 +13,7 @@ replaceWithprecedingValue <- function(x)
 }
 
 # Replace NA with median value
-medianReplace <- function(x)
+medianReplaceNA <- function(x)
 {
   v <- median(x, na.rm = TRUE)
   x[is.na(x)] <- v
