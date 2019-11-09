@@ -1,5 +1,6 @@
 
-numaricalReplacer <- function(x)
+# Replace the value with the one above it
+replaceWithprecedingValue <- function(x)
 {
   for (i in 1:length(x))
   {
