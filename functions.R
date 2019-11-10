@@ -113,11 +113,12 @@ NumaricToNominal12 <- function(x)
 }
 
 
-# Leos decimal replacwer
-decimalReplacer2 <- function(x) {
+# Leos decimal replacer
+LeoAverageNAReplace<-function(x){
   for( i in 1:length(x)){
     ifelse(is.na(x[i]),x[i]<-(x[i-1]+x[i-1])/2,x[i])
   }
+  return(x)
 }
 
 
