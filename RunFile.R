@@ -5,9 +5,12 @@ data$is_attack = YNReplace(data$is_attack)
 
 # cluster min max
 
+dataStripped <- LeoAverageNAReplace(data$LIT101)
+dataKMeans <- kmeans(dataStripped, 3)
+clusterGroups <- cbind(dataStripped, clusterNum = dataKMeans$cluster)
 
-
-clusterGroups <- cbind(data$LIT101, clusterNum = testKMeans$cluster)
 cluster1 = clusterGroups[clusterGroups[, "clusterNum"] == 1,]
-luster2 = clusterGroups[clusterGroups[, "clusterNum"] == 2,]
+cluster2 = clusterGroups[clusterGroups[, "clusterNum"] == 2,]
 cluster3 = clusterGroups[clusterGroups[, "clusterNum"] == 3,]
+
+View()
