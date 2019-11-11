@@ -1,0 +1,11 @@
+attach(`5402_datasetEdit1`)
+df = data.frame(`5402_datasetEdit1`)
+df1 <- subset(df, select = c(3))
+meanDF = kmeans(df1,3)
+plot(P203, col=meanDF$cluster)
+
+attach(`5402_datasetEdit1...Copy`)
+df = data.frame(`5402_datasetEdit1...Copy`)
+df2 <- subset(df, select = c(3))
+meanDF = kmeans(df2,2)
+plot(P203, col=meanDF$cluster)
