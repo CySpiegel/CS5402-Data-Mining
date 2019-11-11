@@ -8,7 +8,7 @@ with open(csvLocation, mode='r') as csvfile:
 	for row in csvreader:
 			rows.append(row)
 Correct = True
-for i in range(30,31):
+for i in range(24):
 	values = []
 	valueCounts = []
 	print(fields[i+1])
