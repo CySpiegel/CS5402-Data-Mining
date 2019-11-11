@@ -127,7 +127,7 @@ ShiftMyDecimalPlacesToTens <- function(x){
 
 
 # Decimal adjustment to Ones
-shiftDecimalPlacesToOnes <- function(x){
+ShiftDecimalPlacesToOnes <- function(x){
   for (i in 1:length(x)) {
     if(!is.na(x[i])) {
       if(x[i] > 10000 && x[i] < 100000)
@@ -147,7 +147,7 @@ shiftDecimalPlacesToOnes <- function(x){
       }
       
       if(x[i] > 10 && x[i] < 100) {
-        v <- x[i] * 10
+        v <- x[i] / 10
         x[i] <- v
       }
       
