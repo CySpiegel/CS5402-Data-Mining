@@ -19,8 +19,8 @@ replaceWithPrecedingValue <- function(x)
 # Replace NA with median value
 medianReplaceNA <- function(x)
 {
-  v <- median(x, na.rm = TRUE)
-  x[is.na(x)] <- v
+  value <- median(x, na.rm = TRUE)
+  x[is.na(x)] <- value
   x
 }
 
@@ -209,25 +209,6 @@ LeoAverageNAReplace<-function(x){
   return(x)
 }
 
-
-
-quantile_three_replacer <- function(x) {
-  #Remove outliers
-  v = x[!x %in% boxplot.stats(x)$out]
-  quan = as.numeric(quantile(v, seq(0, 1, 0.33)))
-  n = length(x)
-  for(i in 1:n) {
-    value = as.numeric(x[i])
-    if (value<= quan[2]) {
-      x[i] <- "low"
-    } else if (value <= quan[3]) {
-      x[i] <- "med"
-    }
-    else
-      x[i] <- "high"
-  }
-  x
-}
 
 # Fix column AIT402
 changeDecimaAIT402 <- function(x){
