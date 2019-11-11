@@ -1,14 +1,14 @@
 import csv
 fields = []
 rows = []
-csvLocation = ("5402_dataset.csv")
+csvLocation = ("originalDataset.csv")
 with open(csvLocation, mode='r') as csvfile:
 	csvreader = csv.reader(csvfile)
 	fields = next(csvreader)
 	for row in csvreader:
 			rows.append(row)
 Correct = True
-for i in range(24):
+for i in range(30,31):
 	values = []
 	valueCounts = []
 	print(fields[i+1])

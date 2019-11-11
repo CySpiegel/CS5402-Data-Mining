@@ -1,3 +1,7 @@
+#library needed
+library(caret)
+library(corrplot)
+library(ggplot2)
 
 # Replace the value with the one above it
 replaceWithPrecedingValue <- function(x)
@@ -18,6 +22,10 @@ medianReplaceNA <- function(x)
   v <- median(x, na.rm = TRUE)
   x[is.na(x)] <- v
   x
+}
+
+replaceWithMode <- function(x) {
+
 }
 
 #When SD is high replace with median
@@ -233,4 +241,15 @@ quantile_three_replacer <- function(x) {
   x
 }
 
-
+# Fix column AIT402
+changeDecimaAIT402 <- function(x){
+  for(i in 1 : NROW(x)){
+    ifelse(x[i]<=1&x[i]>=0.0999999,x[i]<-x[i]*100,
+           ifelse(x[i]<0.0999999,x[i]<-x[i]*1000,
+                  ifelse(x[i]>100,x[i]<-x[i]/100,x[i])))  
+  }
+  for(i in 1:NROW(x)){
+    ifelse(x[i]<100 & abs(x[i]-x[i-1])>20,x[i]<-x[i]/10,x[i])
+  }
+  return(x);
+}
