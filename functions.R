@@ -65,7 +65,7 @@ for (i in 1:length(x)) {
       }
       if(x[i] > 0.1 && x[i] < 1)
       {
-        v <- x[i] * 10000
+        v <- x[i] * 1000
         x[i] <- v
       }
       
@@ -111,7 +111,7 @@ ShiftMyDecimalPlacesToTens <- function(x){
       }
       if(x[i] > 0.1 && x[i] < 1)
       {
-        v <- x[i] * 1000
+        v <- x[i] * 100
         x[i] <- v
       }
       
@@ -158,7 +158,7 @@ shiftDecimalPlacesToOnes <- function(x){
       }
       if(x[i] > 0.1 && x[i] < 1)
       {
-        v <- x[i] * 100
+        v <- x[i] * 10
         x[i] <- v
       }
       
