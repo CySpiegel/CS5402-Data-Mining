@@ -13,4 +13,4 @@ cluster1 = clusterGroups[clusterGroups[, "clusterNum"] == 1,]
 cluster2 = clusterGroups[clusterGroups[, "clusterNum"] == 2,]
 cluster3 = clusterGroups[clusterGroups[, "clusterNum"] == 3,]
 
-View()
+View(dataKMeans$)

@@ -39,7 +39,7 @@ exp_fit_rep <- function(v)
 
 
 # Decimal adjustment to hundred
-fixMyDecimalPlaces <- function(x){
+fixMyDecimalPlacesHundreds <- function(x){
 for (i in 1:length(x)) {
     if(!is.na(x[i])) {
       if(x[i] > 10000 && x[i] < 100000)
@@ -71,6 +71,52 @@ for (i in 1:length(x)) {
       
       if (x[i] > 0.01 && x[i] < 0.1) {
         v <- x[i] * 10000
+        x[i] <- v
+      }
+    }
+  }
+  x
+}
+
+
+# Decimal adjustment to Tens
+fixMyDecimalPlacesTens <- function(x){
+  for (i in 1:length(x)) {
+    if(!is.na(x[i])) {
+      if(x[i] > 10000 && x[i] < 100000)
+      {
+        v <- x[i] / 1000
+        x[i] <- v
+      }
+      
+      if(x[i] > 1000 && x[i] < 10000) {
+        v <- x[i] / 100
+        x[i] <- v
+      }
+      
+      if(x[i] > 100 && x[i] < 1000) {
+        v <- x[i] / 10
+        x[i] <- v
+      }
+      
+      if(x[i] > 10 && x[i] < 100) {
+        v <- x[i] * 1
+        x[i] <- v
+      }
+      
+      if (x[i] > 1 && x[i] < 10) {
+        v <- x[i] * 10
+        x[i] <- v
+        
+      }
+      if(x[i] > 0.1 && x[i] < 1)
+      {
+        v <- x[i] * 1000
+        x[i] <- v
+      }
+      
+      if (x[i] > 0.01 && x[i] < 0.1) {
+        v <- x[i] * 1000
         x[i] <- v
       }
     }
