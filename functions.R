@@ -33,18 +33,6 @@ replaceWithMode <- function(x) {
 
 # var(dad$column, na.rm=TRUE)
 
-exp_fit_rep <- function(v)
-{
-  x <- 1:length(v)
-  fit <- lm(log(v) ~ x)
-  for(i in 1:length(v))
-  {
-    if(is.na(v[i]))
-      v[i] <- exp(predict(fit, data.frame(x = c(i))))
-  }
-  v 
-}
-
 
 # Decimal adjustment to hundred
 ShiftDecimalPlacesToHundreds <- function(x){
