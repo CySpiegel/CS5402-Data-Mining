@@ -12,5 +12,3 @@ clusterGroups <- cbind(dataStripped, clusterNum = dataKMeans$cluster)
 cluster1 = clusterGroups[clusterGroups[, "clusterNum"] == 1,]
 cluster2 = clusterGroups[clusterGroups[, "clusterNum"] == 2,]
 cluster3 = clusterGroups[clusterGroups[, "clusterNum"] == 3,]
-
-View(dataKMeans$)

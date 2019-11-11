@@ -21,7 +21,7 @@ for i in TPumpColumns:
 for i in TPumpColumns:
 	for j in range(maxRows):
 		value = lines[j][i]
-		if(value == "1.5" and (j > 1) and (j < (maxRows - 2))):
+		if(value == "1.5" and (j > 1) and (j < (maxRows - 1))):
 			Average = (float(lines[j-2][i]) + float(lines[j-1][i]) + float(lines[j+1][i]) + float(lines[j+2][i]))/4
 			if(Average < 1.5):
 				ReplaceValue = "1"
