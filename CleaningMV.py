@@ -18,7 +18,7 @@ for i in TMVColumns:
 		value = lines[j][i]
 		if value == "NA" and j > 1:
 			lines[j][i] = lines[j-1][i]
-		if value == "NA" and j > 0:
+		elif value == "NA" and j > 0:
 			lines[j][i] = lines[j+1][i]
 
 writer = csv.writer(open(csvLocation, 'w', newline = ''))
