@@ -28,7 +28,6 @@ for i in FIT101Column:
 			if value == "NA":
 				Average = (float(prevValue) + float(nextValue))/2
 				lines[j][i] = str('{0:g}'.format(Average))
-				print(lines[j][i])
 				
 writer = csv.writer(open(csvLocation, 'w', newline = ''))
 writer.writerows(lines)
