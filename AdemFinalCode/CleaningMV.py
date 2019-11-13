@@ -1,14 +1,14 @@
 import csv
 fields = []
 rows = []
-csvLocation = ("5402_dataset - Copy.csv")
+csvLocation = ("FinalDataset - Copy.csv")
 
 r = csv.reader(open(csvLocation))
 lines = list(r)
 
 maxRows = 14996 - 1
 #All the MV columns
-TMVColumns = [21,22,23,25,26,27]
+TMVColumns = [8,9,10,12,13,14]
 
 value = 0
 
