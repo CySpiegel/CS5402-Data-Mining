@@ -122,7 +122,8 @@ confMatrixSubSysP5 = confusionMatrix(as.factor(yTestSubSysP5), as.factor(predict
 modelSubSysP6 = SuperLearner(Y = yTrainSubSysP6, X = xTrainSubSusP6, family = binomial(), SL.library = algorithmList)
 predictionSubSysP1 = predict.SuperLearner(modelSubSysP6, newdata = xTestSubSysP6)
 predictedResultSubSysP6 = as.numeric(ifelse(predictionSubSysP6$pred>=0.5,1,0))
-confMatrixSubSysP6 = confusionMatrix(as.factor(yTestSubSysP6), as.factor(predictedResultSubSysP6))
+# something is wrong here
+# confMatrixSubSysP6 = confusionMatrix(as.factor(yTestSubSysP6), as.factor(predictedResultSubSysP6))
 
 
 
