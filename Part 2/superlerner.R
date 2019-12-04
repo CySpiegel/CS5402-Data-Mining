@@ -13,7 +13,7 @@ library(xgboost)
 #load data into frame
 data = hw8_data
 
-options(mc.cores = 4)
+options(mc.cores = 7)
 getOption("mc.cores")
 set.seed(1, "L'Ecuyer-CMRG")
 
@@ -32,10 +32,9 @@ SL.kernelKnnManhattan = function(...) {
 
 algorithmList = list("SL.mean","SL.ranger","SL.ksvm","SL.kernelKnnManhattan","SL.bayesglm","SL.xgboost")
 
-# algorithmList = list("SL.kernelKnnManhattan")
-#
+
 system.time({
-crossFoldValidation = CV.SuperLearner(yTrain, xTrain, V = 3, parallel = "multicore", family = binomial(), SL.library = algorithmList)
+crossFoldValidation = CV.SuperLearner(yTrain, xTrain, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
 })
 
 
@@ -52,3 +51,6 @@ cv_sl = CV.SuperLearner(Y = yTrain, X = xTrain, family = binomial(),
                         method = "method.AUC",
                         SL.library = algorithmList)
 })
+
+confMatrix
+summary(cv_sl)
