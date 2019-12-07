@@ -7,13 +7,15 @@ library(e1071)
 library(bnlearn)
 library(arules)
 library(arm)
+library(parallel)
 library(xgboost)
+library(ranger)
 
 # listWrappers()
 #load data into frame
 data = hw8_data
 
-options(mc.cores = 7)
+options(mc.cores = 4)
 getOption("mc.cores")
 set.seed(1, "L'Ecuyer-CMRG")
 

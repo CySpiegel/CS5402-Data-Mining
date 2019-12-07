@@ -7,7 +7,9 @@ library(e1071)
 library(bnlearn)
 library(arules)
 library(arm)
+library(parallel)
 library(xgboost)
+library(ranger)
 
 
 subSystemP1 = hw8_data[, c("is_attack","P101","MV101","FIT101","LIT101")]
@@ -25,7 +27,7 @@ SL.kernelKnnManhattan = function(...) {
 algorithmList = list("SL.mean","SL.ranger","SL.ksvm","SL.kernelKnnManhattan","SL.bayesglm","SL.xgboost")
 
 
-options(mc.cores = 7)
+options(mc.cores = 3)
 getOption("mc.cores")
 set.seed(1, "L'Ecuyer-CMRG")
 
@@ -80,10 +82,31 @@ xTestSubSysP6 = subSystemP6[-trainingSetSubSysP6,2:3]
 yTestSubSysP6 = as.numeric(subSystemP6[-trainingSetSubSysP6, 1])
 
 
+# Cross fold validation risk calculations for each subsection
+system.time({
+  CFVSubSysP1 = CV.SuperLearner(yTrainSubSysP1, xTrainSubSusP1, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
+})
 
-#system.time({
- # CFVSubSysP1 = CV.SuperLearner(yTrainSubSysP1, xTrainSubSusP1, V = 3, parallel = "multicore", family = binomial(), SL.library = algorithmList)
-#})
+system.time({
+ CFVSubSysP2 = CV.SuperLearner(yTrainSubSysP2, xTrainSubSusP2, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
+})
+
+system.time({
+ CFVSubSysP3 = CV.SuperLearner(yTrainSubSysP3, xTrainSubSusP3, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
+})
+
+system.time({
+ CFVSubSysP4 = CV.SuperLearner(yTrainSubSysP4, xTrainSubSusP4, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
+})
+
+system.time({
+ CFVSubSysP5 = CV.SuperLearner(yTrainSubSysP5, xTrainSubSusP5, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
+})
+
+system.time({
+ CFVSubSysP6 = CV.SuperLearner(yTrainSubSysP6, xTrainSubSusP6, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
+})
+
 
 # SubsystemP1 modeling
 modelSubSysP1 = SuperLearner(Y = yTrainSubSysP1, X = xTrainSubSusP1, family = binomial(), SL.library = algorithmList)
@@ -120,7 +143,7 @@ confMatrixSubSysP5 = confusionMatrix(as.factor(yTestSubSysP5), as.factor(predict
 
 # SubsystemP6 modeling
 modelSubSysP6 = SuperLearner(Y = yTrainSubSysP6, X = xTrainSubSusP6, family = binomial(), SL.library = algorithmList)
-predictionSubSysP1 = predict.SuperLearner(modelSubSysP6, newdata = xTestSubSysP6)
+predictionSubSysP6 = predict.SuperLearner(modelSubSysP6, newdata = xTestSubSysP6)
 predictedResultSubSysP6 = as.numeric(ifelse(predictionSubSysP6$pred>=0.5,1,0))
 # something is wrong here
 # confMatrixSubSysP6 = confusionMatrix(as.factor(yTestSubSysP6), as.factor(predictedResultSubSysP6))
