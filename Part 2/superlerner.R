@@ -34,20 +34,21 @@ SL.kernelKnnManhattan = function(...) {
 
 algorithmList = list("SL.mean","SL.ranger","SL.ksvm","SL.kernelKnnManhattan","SL.bayesglm","SL.xgboost")
 
-
+# Risk assessment
 system.time({
 crossFoldValidation = CV.SuperLearner(yTrain, xTrain, V = 10, parallel = "multicore", family = binomial(), SL.library = algorithmList)
 })
 
-
+#Building the model
 model = SuperLearner(Y = yTrain, X = xTrain, family = binomial(), SL.library = algorithmList)
 prediction = predict.SuperLearner(model, newdata = xTest)
 predictedResult = as.numeric(ifelse(prediction$pred>=0.5,1,0))
 confMatrix = confusionMatrix(as.factor(yTest), as.factor(predictedResult))
 
+
+# Calculating area under the curve using 10 fold cross validation
 system.time({
 cv_sl = CV.SuperLearner(Y = yTrain, X = xTrain, family = binomial(),
-                        # For a real analysis we would use V = 10.
                         V = 10,
                         parallel = "multicore",
                         method = "method.AUC",
